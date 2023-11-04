@@ -7,7 +7,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.3",
-    "react-native-web": "~0.19.6"
+    "react-native-svg": "13.9.0",
+    "react-native-web": "~0.19.6",
+    "victory": "^36.6.12",
+    "victory-native": "^36.6.12"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
