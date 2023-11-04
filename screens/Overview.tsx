@@ -1,3 +1,4 @@
+import { gql, useLazyQuery } from '@apollo/client';
 import { FC, useState } from 'react'
 import {
     Pressable,
@@ -41,6 +42,21 @@ const styles = StyleSheet.create({
 
 const Overview: FC = () => {
     const [symbol, setSymbol] = useState("")
+
+    const [execQuery, {data, loading, error}] = useLazyQuery(gql`
+        query Lookup($symbol: String!) {
+        lookup(symbol: $symbol) {
+            symbol
+            revenue(resolutions: quarterly) {
+            date
+            value
+            }   
+        }
+      }
+    `);
+
+    if (error) return <Text>{error.message}</Text>
+
     return (
         <ScrollView>
             <View style={styles.searchOuter}>
@@ -54,12 +70,13 @@ const Overview: FC = () => {
                     accessibilityLabel='GO'
                     accessibilityRole='button'
                     style={styles.buttons}
+                    onPress={() => execQuery({ variables: {symbol}})}
                     >
                     <Text style={styles.buttonText}>Go</Text>
                     </Pressable>
                 </SafeAreaView>
             </View>
-            <Text>{symbol}</Text>
+            {loading? <Text>Loading...</Text>:<Text>{JSON.stringify(data)}</Text> }
         </ScrollView>
     )
 }
