@@ -4,6 +4,7 @@
     "@expo/webpack-config": "^19.0.0",
     "expo": "^49.0.3",
     "graphql": "^16.8.1",
+    "luxon": "^3.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.3",
@@ -14,6 +15,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
+    "@types/luxon": "^3.3.3",
     "@types/react": "~18.2.14",
     "@types/react-native": "~0.70.6",
     "typescript": "^5.1.3"

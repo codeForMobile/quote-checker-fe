@@ -1,5 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client';
 import { FC, useState } from 'react'
+import {DateTime} from 'luxon'
 import {
     Pressable,
     SafeAreaView,
@@ -13,6 +14,7 @@ import {
 import {VictoryAxis,
     VictoryBar,
     VictoryChart,
+    VictoryLabel,
     VictoryTheme} from '../modules/charts'
 
 const styles = StyleSheet.create({
@@ -62,12 +64,14 @@ const Overview: FC = () => {
 
     if (error) return <Text>{error.message}</Text>
 
-    const chartData = [
+    /*  const chartData = [
         {quarter: 1, earnings: 13000},
         {quarter: 2, earnings: 16500},
         {quarter: 3, earnings: 14250},
         {quarter: 4, earnings: 19000}
-      ];
+      ]; */
+
+    const chartData = data ? [...data.lookup.revenue].reverse() : []
 
     return (
         <ScrollView>
@@ -90,25 +94,32 @@ const Overview: FC = () => {
             </View>
             {loading? <Text>Loading...</Text>: <View>
             <VictoryChart
-        // domainPadding will add space to each side of VictoryBar to
-        // prevent it from overlapping the axis
-        domainPadding={20}
-      >
+                domainPadding={20}
+            >
         <VictoryAxis
-          // tickValues specifies both the number of ticks and where
-          // they are placed on the axis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+          tickFormat={(date: string) => DateTime.fromISO(date).toLocaleString({
+            month: 'short',
+            year: 'numeric'
+          })}
+
+          tickLabelComponent={
+            <VictoryLabel 
+                angle={-45}
+                style={{
+                    fontSize:8
+                }}
+                textAnchor="end"
+            />
+          }
         />
         <VictoryAxis
           dependentAxis
-          // tickFormat specifies how ticks should be displayed
-          tickFormat={(x) => (`$${x / 1000}k`)}
+          tickFormat={(x) => (`$${x / 1000000000}b`)}
         />
         <VictoryBar
           data={chartData}
-          x="quarter"
-          y="earnings"
+          x="date"
+          y="value"
         />
       </VictoryChart>
             </View> }
