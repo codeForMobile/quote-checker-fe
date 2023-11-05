@@ -1,36 +1,22 @@
-# TypeScript Example
+## quote-checker frontend
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
-
-```sh
-npx create-react-native-app -t with-typescript
-```
-
-TypeScript is a superset of JavaScript which gives you static types and powerful tooling in Visual Studio Code including autocompletion and useful inline warnings for type errors.
-
-## 🚀 How to use
+A spa which can showcase a ticker's(stock, etf, crypto) past performance in graphical format.
+A spa containing a search bar and victory graph.
+It allows showcasing a company's past performance quarterly using the graphQL api from its own backend [quote-checker-be](https://github.com/codeForMobile/quote-checker-be) and iexjs cloud data provider.
 
 #### Creating a new project
 
 - Install the CLI: `npm i -g expo-cli`
 - Create a project: `npx create-react-native-app -t with-typescript`
-- `cd` into the project
 
-### Adding TypeScript to existing projects
+#### How to run it?
 
-- Create a blank TypeScript config: `touch tsconfig.json`
-- Run `yarn start` or `npm run start` to automatically configure TypeScript
-- Rename files to TypeScript, `.tsx` for React components and `.ts` for plain typescript files
+execute `npm run dev` and select `w` to view it in web
 
-> 💡 You can disable the TypeScript setup in Expo CLI with the environment variable `EXPO_NO_TYPESCRIPT_SETUP=1 expo start`
+#### Next steps
 
-## 📝 Notes
+Will amend ui
 
-- [Expo TypeScript guide](https://docs.expo.dev/versions/latest/guides/typescript/)
+#### how it looks
+
+![Ui](quote-checker-fe-ui.png)
